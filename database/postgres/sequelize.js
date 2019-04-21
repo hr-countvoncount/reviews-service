@@ -22,13 +22,13 @@ const User = sequelize.define(
     }
   },
   {
-    timestamps: false
-    // indexes: [
-    //   {
-    //     unique: true,
-    //     fields: ["id"]
-    //   }
-    // ]
+    timestamps: false,
+    indexes: [
+      {
+        unique: true,
+        fields: ["id"]
+      }
+    ]
   }
 );
 
@@ -43,7 +43,7 @@ const Review = sequelize.define(
       type: Sequelize.STRING
     },
     text: {
-      type: Sequelize.STRING(1000)u
+      type: Sequelize.STRING(1000)
     },
     rating: {
       type: Sequelize.INTEGER
@@ -62,18 +62,19 @@ const Review = sequelize.define(
     }
   },
   {
-    timestamps: false
-    // indexes: [
-    //   {
-    //     unique: true,
-    //     fields: ["id"]
-    //   }
-    // ]
+    timestamps: false,
+    indexes: [
+      {
+        unique: true,
+        fields: ["apartment_id"]
+      }
+    ]
   }
 );
 
 // Counter variables
-let batchCount = 0;
+let userCount = 0;
+let reviewCount = 0;
 let userId = 1;
 let reviewId = 1;
 
@@ -98,10 +99,10 @@ const createUsers = () => {
 };
 
 // Creates an array of 5000 objects and inserts it into the appropriate table
-const createReviews = async () => {
+const createReviews = () => {
   let reviews = [];
 
-  for (let i = 0; i < 5000; i++) {
+  for (let i = 0; i < 1000; i++) {
     reviews.push({
       id: reviewId,
       date:
@@ -132,9 +133,14 @@ const createReviews = async () => {
 };
 
 const insertALotOfRecords = async () => {
-  if (batchCount < 10000) {
-    batchCount++;
-    Promise.all([createUsers(), createReviews()]).then(() => {
+  if (userCount < 10000) {
+    userCount++;
+    createUsers().then(() => {
+      insertALotOfRecords();
+    });
+  } else if (reviewCount < 50000) {
+    reviewCount++;
+    createReviews().then(() => {
       insertALotOfRecords();
     });
   } else {

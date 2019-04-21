@@ -11,7 +11,8 @@ MongoClient.connect(url, { useNewUrlParser: true }).then(client => {
   const reviewCollection = db.collection("reviews");
 
   // Counter variables
-  let batchCount = 0;
+  let userCount = 0;
+  let reviewCount = 0;
   let userId = 1;
   let reviewId = 1;
 
@@ -63,11 +64,16 @@ MongoClient.connect(url, { useNewUrlParser: true }).then(client => {
     return reviewCollection.insertMany(reviews);
   };
 
-  // Will continuously run batch-inserts and index
+  // Will continuously run batch-inserts and then create appropriate index
   const insertALotOfDocuments = async () => {
-    if (batchCount < 10000) {
-      batchCount++;
-      Promise.all([createUsers(), createReviews()]).then(() => {
+    if (userCount < 10000) {
+      userCount++;
+      createUsers().then(() => {
+        insertALotOfDocuments();
+      });
+    } else if (reviewCount < 10000) {
+      reviewCount++;
+      createReviews().then(() => {
         insertALotOfDocuments();
       });
     } else {
