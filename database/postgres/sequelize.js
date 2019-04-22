@@ -3,7 +3,8 @@ const faker = require("faker");
 const sequelize = new Sequelize("reviews", "postgres", "pass123", {
   host: "localhost",
   dialect: "postgres",
-  port: 5432
+  port: 5432,
+  logging: false
 });
 
 // const sequelize = new Sequelize("reviews", null, null, {
