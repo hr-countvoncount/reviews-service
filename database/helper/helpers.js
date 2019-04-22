@@ -1,14 +1,21 @@
+/*****************************/
+/****** Sequelize Setup ******/
+/*****************************/
 const Sequelize = require("sequelize");
-const sequelize = new Sequelize("reviews", null, null, {
-  host: "localhost",
-  dialect: "postgres"
+const sequelize = new Sequelize("reviews", "postgres", "pass123", {
+  host: "3.14.80.251",
+  dialect: "postgres",
+  port: 5432
 });
 
-// const mongoose = require("mongoose");
-// mongoose.connect("mongodb://localhost/reviews", { useNewUrlParser: true });
-// const { User, Review } = require("../mongodb/mongoose.js");
+/*****************************/
+/****** Mongoose Setup ******/
+/****************************/
+// const Review = require("../mongodb/models/Review.js");
 
-// Sequelize
+/****************************************/
+/****** Sequelize Helper Functions ******/
+/****************************************/
 const getReviewsFromDatabase = (id, callback) => {
   sequelize
     .query(
@@ -36,17 +43,20 @@ const getSearchResultsFromDatabase = (id, word, callback) => {
     });
 };
 
-// Mongoose
+/***************************************/
+/****** Mongoose Helper Functions ******/
+/***************************************/
 // const getReviewsFromDatabase = (id, callback) => {
-//   // console.log("heres the id! ", typeof id);
-//   Review.find({ id: +id }, (err, res) => {
-//     console.log("heres some res!! ", res);
+//   Review.find({ apartment_id: id }, (err, res) => {
+//     callback(null, res);
 //   });
 // };
 
 // const getSearchResultsFromDatabase = (id, word, callback) => {};
 
-// SQLite
+/*************************************/
+/****** SQLite Helper Functions ******/
+/*************************************/
 // const getReviewsFromDatabase = (id, callback) => {
 //   let db = new sqlite3.Database(path.join(__dirname, "../reviews.db"), err => {
 //     if (err) {

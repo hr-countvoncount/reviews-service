@@ -7,31 +7,11 @@ MongoClient.connect(url, { useNewUrlParser: true }).then(client => {
   const db = client.db(dbName);
 
   // Database Collection names
-  const userCollection = db.collection("users");
   const reviewCollection = db.collection("reviews");
 
   // Counter variables
-  let userCount = 0;
   let reviewCount = 0;
-  let userId = 1;
   let reviewId = 1;
-
-  // Creates an array of 1000 objects and inserts it into the appropriate Collection
-  const createUsers = async () => {
-    let users = [];
-
-    for (let i = 0; i < 1000; i++) {
-      users.push({
-        id: userId,
-        name: faker.name.firstName(),
-        avatar: faker.internet.avatar()
-      });
-
-      userId++;
-    }
-
-    return userCollection.insertMany(users);
-  };
 
   // Creates an array of 5000 objects and inserts it into the appropriate Collection
   const createReviews = async () => {
@@ -39,6 +19,8 @@ MongoClient.connect(url, { useNewUrlParser: true }).then(client => {
 
     for (let i = 0; i < 5000; i++) {
       reviews.push({
+        name: faker.name.firstName(),
+        avatar: faker.internet.avatar(),
         id: reviewId,
         date:
           faker.date.month() +
@@ -64,21 +46,14 @@ MongoClient.connect(url, { useNewUrlParser: true }).then(client => {
     return reviewCollection.insertMany(reviews);
   };
 
-  // Will continuously run batch-inserts and then create appropriate index
-  const insertALotOfDocuments = async () => {
-    if (userCount < 10000) {
-      userCount++;
-      createUsers().then(() => {
-        insertALotOfDocuments();
-      });
-    } else if (reviewCount < 10000) {
+  const insertALotOfDocuments = () => {
+    if (reviewCount < 10000) {
       reviewCount++;
       createReviews().then(() => {
         insertALotOfDocuments();
       });
     } else {
-      // await userCollection.createIndex({ id: 1 });
-      // await reviewCollection.createIndex({ id: 1 });
+      // await reviewCollection.createIndex({ apartment_id: 1 });
       console.timeEnd("dbsave");
       client.close();
     }
@@ -87,3 +62,40 @@ MongoClient.connect(url, { useNewUrlParser: true }).then(client => {
   console.time("dbsave");
   insertALotOfDocuments();
 });
+
+// Creates an array of 1000 objects and inserts it into the appropriate Collection
+// const createUsers = async () => {
+//   let users = [];
+
+//   for (let i = 0; i < 1000; i++) {
+//     users.push({
+//       id: userId,
+//       name: faker.name.firstName(),
+//       avatar: faker.internet.avatar()
+//     });
+
+//     userId++;
+//   }
+
+//   return userCollection.insertMany(users);
+// };
+
+// Will continuously run batch-inserts and then create appropriate index
+// const insertALotOfDocuments = async () => {
+//   if (userCount < 10000) {
+//     userCount++;
+//     createUsers().then(() => {
+//       insertALotOfDocuments();
+//     });
+//   } else if (reviewCount < 10000) {
+//     reviewCount++;
+//     createReviews().then(() => {
+//       insertALotOfDocuments();
+//     });
+//   } else {
+//     // await userCollection.createIndex({ id: 1 });
+//     // await reviewCollection.createIndex({ id: 1 });
+//     console.timeEnd("dbsave");
+//     client.close();
+//   }
+// };

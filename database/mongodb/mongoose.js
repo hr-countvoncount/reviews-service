@@ -10,6 +10,8 @@ const userSchema = new mongoose.Schema({
 });
 
 const reviewSchema = new mongoose.Schema({
+  name: String,
+  avatar: String,
   id: Number,
   date: String,
   text: String,
