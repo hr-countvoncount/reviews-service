@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const faker = require("faker");
 const sequelize = new Sequelize("reviews", "postgres", "pass123", {
-  host: "172.31.44.168",
+  host: "localhost",
   dialect: "postgres",
   port: 5432
 });
