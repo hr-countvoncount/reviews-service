@@ -6,6 +6,12 @@ const sequelize = new Sequelize("reviews", "postgres", "pass123", {
   port: 5432
 });
 
+// const sequelize = new Sequelize("reviews", null, null, {
+//   host: "localhost",
+//   dialect: "postgres",
+//   logging: false
+// });
+
 // Schemas
 const User = sequelize.define(
   "user",
@@ -22,13 +28,13 @@ const User = sequelize.define(
     }
   },
   {
-    timestamps: false,
-    indexes: [
-      {
-        unique: true,
-        fields: ["id"]
-      }
-    ]
+    timestamps: false
+    // indexes: [
+    //   {
+    //     unique: true,
+    //     fields: ["id"]
+    //   }
+    // ]
   }
 );
 
@@ -62,13 +68,13 @@ const Review = sequelize.define(
     }
   },
   {
-    timestamps: false,
-    indexes: [
-      {
-        unique: true,
-        fields: ["apartment_id"]
-      }
-    ]
+    timestamps: false
+    // indexes: [
+    //   {
+    //     unique: true,
+    //     fields: ["apartment_id"]
+    //   }
+    // ]
   }
 );
 
@@ -92,10 +98,7 @@ const createUsers = () => {
     userId++;
   }
 
-  return User.bulkCreate(users, {
-    ignoreDuplicates: true,
-    validate: false
-  });
+  return User.bulkCreate(users);
 };
 
 // Creates an array of 5000 objects and inserts it into the appropriate table
@@ -126,10 +129,7 @@ const createReviews = () => {
     reviewId++;
   }
 
-  return Review.bulkCreate(reviews, {
-    ignoreDuplicates: true,
-    validate: false
-  });
+  return Review.bulkCreate(reviews);
 };
 
 const insertALotOfRecords = async () => {
