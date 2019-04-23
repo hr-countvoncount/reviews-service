@@ -4,7 +4,6 @@ const csv = require("fast-csv");
 
 let userId = 1;
 let reviewId = 1;
-let apartmentId = 1;
 
 const createUsers = () => {
   let users = [];
@@ -22,10 +21,10 @@ const createUsers = () => {
   return users;
 };
 
-const createReviews = async () => {
+const createReviews = () => {
   let reviews = [];
 
-  for (let i = 0; i < 10000000; i++) {
+  for (let i = 0; i < 50000000; i++) {
     reviews.push({
       id: reviewId,
       date:
@@ -40,7 +39,7 @@ const createReviews = async () => {
       }),
       apartment_id: faker.random.number({
         min: 1,
-        max: 100
+        max: 10000000
       }),
       has_response: Math.random() > 0.66,
       owner_response: faker.lorem.sentences(Math.ceil(Math.random() * 4))
@@ -52,29 +51,6 @@ const createReviews = async () => {
   return reviews;
 };
 
-const createApartments = async () => {
-  let apartments = [];
-
-  for (let i = 0; i < 10000000; i++) {
-    apartments.push({
-      id: apartmentId,
-      address:
-        faker.address.streetAddress() +
-        " " +
-        faker.address.city() +
-        " " +
-        faker.address.stateAbbr() +
-        " " +
-        faker.address.zipCode(),
-      owned_by_user_id: apartmentId
-    });
-
-    apartmentId++;
-  }
-
-  return apartments;
-};
-
 csv.writeToStream(fs.createWriteStream("reviews.csv"), createReviews(), {
-  headers: true
+  headers: false
 });

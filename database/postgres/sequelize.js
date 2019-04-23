@@ -150,6 +150,6 @@ const insertALotOfRecords = async () => {
 };
 
 console.time("dbsave");
-sequelize.sync({ force: true }).then(() => {
-  insertALotOfRecords();
-});
+// sequelize.sync({ force: true }).then(() => {
+//   console.log("Tables made!");
+// });
