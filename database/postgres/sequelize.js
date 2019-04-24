@@ -117,11 +117,11 @@ const createReviews = () => {
       rating: Math.floor((() => Math.random() * 5)()) + 0.5,
       user_id: faker.random.number({
         min: 1,
-        max: 10000000
+        max: 10000
       }),
       apartment_id: faker.random.number({
         min: 1,
-        max: 10000000
+        max: 10000
       }),
       has_response: Math.random() > 0.66,
       owner_response: faker.lorem.sentences(Math.ceil(Math.random() * 4))
@@ -134,12 +134,12 @@ const createReviews = () => {
 };
 
 const insertALotOfRecords = async () => {
-  if (userCount < 10000) {
+  if (userCount < 10) {
     userCount++;
     createUsers().then(() => {
       insertALotOfRecords();
     });
-  } else if (reviewCount < 50000) {
+  } else if (reviewCount < 50) {
     reviewCount++;
     createReviews().then(() => {
       insertALotOfRecords();
@@ -150,6 +150,7 @@ const insertALotOfRecords = async () => {
 };
 
 console.time("dbsave");
-// sequelize.sync({ force: true }).then(() => {
-//   console.log("Tables made!");
-// });
+sequelize.sync({ force: true }).then(() => {
+  insertALotOfRecords();
+  // console.log("Tables made!");
+});
