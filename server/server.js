@@ -4,6 +4,7 @@ const path = require("path");
 const util = require("util");
 const cors = require("cors");
 const app = express();
+const config = require("../config.js");
 const port = process.env.PORT || 3002;
 const {
   getReviewsFromDatabase,
@@ -25,6 +26,10 @@ sortReviews = dates => {
     return dateB - dateA;
   });
 };
+
+app.get(`/${config.loader}`, (req, res) => {
+  res.sendFile(path.join(__dirname, `../public/${config.loader}.txt`));
+});
 
 app.get("/:id", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
