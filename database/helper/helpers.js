@@ -22,7 +22,6 @@ const sequelize = new Sequelize("reviews", "postgres", "pass123", {
 /****** Sequelize Helper Functions ******/
 /****************************************/
 const getReviewsFromDatabase = (id, callback) => {
-  console.log("AAAHHHHHH!");
   sequelize
     .query(
       `SELECT users.name, users.avatar, reviews.date, reviews.text, reviews.rating, reviews.has_response, reviews.owner_response
