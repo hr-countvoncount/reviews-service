@@ -5,7 +5,7 @@
   "main": "bundle.js",
   "scripts": {
     "test": "jest",
-    "build": "webpack",
+    "build": "webpack -d --watch",
     "start": "nodemon ./server/server.js"
   },
   "keywords": [],

@@ -3,7 +3,6 @@ const morgan = require("morgan");
 const path = require("path");
 const util = require("util");
 const cors = require("cors");
-const app = express();
 const config = require("../config.js");
 const port = process.env.PORT || 3002;
 const {
@@ -11,6 +10,7 @@ const {
   getSearchResultsFromDatabase
 } = require("../database/helper/helpers.js");
 
+const app = express();
 app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "../public")));
 app.use(cors());

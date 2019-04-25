@@ -1,14 +1,12 @@
-const fs = require("fs");
 const faker = require("faker");
-const csv = require("fast-csv");
 
 let userId = 1;
 let reviewId = 1;
 
-const createUsers = () => {
+module.exports.createUsers = model => {
   let users = [];
 
-  for (let i = 0; i < 10000000; i++) {
+  for (let i = 0; i < 1000; i++) {
     users.push({
       id: userId,
       name: faker.name.firstName(),
@@ -18,13 +16,13 @@ const createUsers = () => {
     userId++;
   }
 
-  return users;
+  return model.bulkCreate(users);
 };
 
-const createReviews = () => {
+module.exports.createReviews = model => {
   let reviews = [];
 
-  for (let i = 0; i < 50000000; i++) {
+  for (let i = 0; i < 1000; i++) {
     reviews.push({
       id: reviewId,
       date:
@@ -35,11 +33,11 @@ const createReviews = () => {
       rating: Math.floor((() => Math.random() * 5)()) + 0.5,
       user_id: faker.random.number({
         min: 1,
-        max: 10000000
+        max: 10000
       }),
       apartment_id: faker.random.number({
         min: 1,
-        max: 10000000
+        max: 10000
       }),
       has_response: Math.random() > 0.66,
       owner_response: faker.lorem.sentences(Math.ceil(Math.random() * 4))
@@ -48,9 +46,5 @@ const createReviews = () => {
     reviewId++;
   }
 
-  return reviews;
+  return model.bulkCreate(reviews);
 };
-
-csv.writeToStream(fs.createWriteStream("reviews.csv"), createReviews(), {
-  headers: false
-});
