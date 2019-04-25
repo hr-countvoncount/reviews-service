@@ -3,20 +3,20 @@ const Sequelize = require("sequelize");
 /***************************/
 /****** Sequelize AWS ******/
 /***************************/
-const sequelize = new Sequelize("reviews", "postgres", "pass123", {
-  host: "localhost",
-  dialect: "postgres",
-  port: 5432
-});
+// const sequelize = new Sequelize("reviews", "postgres", "pass123", {
+//   host: "localhost",
+//   dialect: "postgres",
+//   port: 5432
+// });
 
 /*********************************/
 /****** Sequelize localhost ******/
 /*********************************/
-// const sequelize = new Sequelize("reviews", null, null, {
-//   host: "localhost",
-//   dialect: "postgres",
-//   logging: false
-// });
+const sequelize = new Sequelize("reviews", null, null, {
+  host: "localhost",
+  dialect: "postgres",
+  logging: false
+});
 
 /****************************************/
 /****** Sequelize Helper Functions ******/

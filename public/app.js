@@ -19131,7 +19131,7 @@ var ReviewList = function (_React$Component) {
       var _this3 = this;
 
       // axios
-      // .get(`http://localhost:3002${id}/search/${word}`)
+      //   .get(`http://localhost:3002${id}/search/${word}`)
       _axios2.default.get("http://ec2-13-59-200-250.us-east-2.compute.amazonaws.com:3002" + id + "/search/" + word).then(function (_ref2) {
         var data = _ref2.data;
 

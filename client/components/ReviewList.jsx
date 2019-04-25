@@ -65,7 +65,7 @@ class ReviewList extends React.Component {
 
   getSearchResults(id, word) {
     // axios
-    // .get(`http://localhost:3002${id}/search/${word}`)
+    //   .get(`http://localhost:3002${id}/search/${word}`)
     axios
       .get(
         `http://ec2-13-59-200-250.us-east-2.compute.amazonaws.com:3002${id}/search/${word}`
