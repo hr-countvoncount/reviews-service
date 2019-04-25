@@ -56,6 +56,6 @@ const insertALotOfRecords = async () => {
   }
 };
 
-sequelize.sync({ force: true }).then(() => {
-  insertALotOfRecords();
-});
+// sequelize.sync({ force: true }).then(() => {
+// insertALotOfRecords();
+// });
