@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const path = require("path");
 const util = require("util");
 const cors = require("cors");
+const compression = require("compression");
 const config = require("../config.js");
 const port = process.env.PORT || 3002;
 const {
@@ -12,9 +13,11 @@ const {
 } = require("../database/helper/helpers.js");
 
 const app = express();
-app.use(morgan("dev"));
-app.use(express.static(path.join(__dirname, "../public")));
+
 app.use(cors());
+app.use(morgan("dev"));
+app.use(compression());
+app.use(express.static(path.join(__dirname, "../public")));
 
 getPaginatedItems = (items, offset) => {
   return items.slice(offset, offset + 7);

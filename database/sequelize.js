@@ -33,7 +33,7 @@ let userCount = 0;
 let reviewCount = 0;
 
 const insertALotOfRecords = async () => {
-  if (userCount < 10000) {
+  if (userCount < 100) {
     userCount++;
     createUsers(User)
       .then(() => {
@@ -42,7 +42,7 @@ const insertALotOfRecords = async () => {
       .catch(err => {
         console.log("Error! ", err);
       });
-  } else if (reviewCount < 50000) {
+  } else if (reviewCount < 500) {
     reviewCount++;
     createReviews(Review)
       .then(() => {
@@ -56,6 +56,6 @@ const insertALotOfRecords = async () => {
   }
 };
 
-// sequelize.sync({ force: true }).then(() => {
-// insertALotOfRecords();
-// });
+sequelize.sync({ force: true }).then(() => {
+  insertALotOfRecords();
+});
