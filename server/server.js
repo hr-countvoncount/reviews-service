@@ -45,9 +45,9 @@ sortReviews = dates => {
   });
 };
 
-app.get(`/${config.loader}`, (req, res) => {
-  res.sendFile(path.join(__dirname, "../public/loaderio.txt"));
-});
+// app.get(`/${config.loader}/`, (req, res) => {
+//   res.sendFile(path.join(__dirname, "../public/loaderio.txt"));
+// });
 
 app.get("/:id", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
