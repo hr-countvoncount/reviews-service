@@ -1,3 +1,3 @@
 module.exports = {
-  loader: "loaderio-c44c9c36ee44d503b1237e011733c330"
+  loader: "loaderio-573e1c49242e20b6c940df9362380fba"
 };
