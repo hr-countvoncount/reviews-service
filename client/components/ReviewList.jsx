@@ -33,6 +33,9 @@ class ReviewList extends React.Component {
   }
 
   getReviews(id) {
+    console.log("HERE IS YOUR URL! ", process.env.AWS_ROOM);
+    console.log("HERE IS ID! ", id);
+
     return axios({
       // url: `http://localhost:3002/room${id}`,
       url: `${process.env.AWS_ROOM}/room${id}`,
