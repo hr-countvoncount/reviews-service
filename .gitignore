@@ -2,3 +2,4 @@ node_modules
 artillery.yml
 newrelic_agent.log
 .DS_Store
+.env

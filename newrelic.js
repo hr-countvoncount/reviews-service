@@ -13,7 +13,7 @@ exports.config = {
   /**
    * Your New Relic license key.
    */
-  license_key: "0785a098946eda3179ad043760bd442554f1f512",
+  license_key: `${process.env.NEW_RELIC_LICENSE}`,
   logging: {
     /**
      * Level at which to log. 'trace' is most useful to New Relic when diagnosing

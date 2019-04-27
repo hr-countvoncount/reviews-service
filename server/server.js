@@ -1,4 +1,6 @@
+require("dotenv").config();
 require("newrelic");
+
 const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
@@ -6,8 +8,8 @@ const util = require("util");
 const cors = require("cors");
 const expressStaticGzip = require("express-static-gzip");
 const compression = require("compression");
-const config = require("../config.js");
 const port = process.env.PORT || 3002;
+const environment = process.env.NODE_ENV || "development";
 const {
   getReviewsFromDatabase,
   getSearchResultsFromDatabase
@@ -44,10 +46,6 @@ sortReviews = dates => {
     return dateB - dateA;
   });
 };
-
-// app.get(`/${config.loader}/`, (req, res) => {
-//   res.sendFile(path.join(__dirname, "../public/loaderio.txt"));
-// });
 
 app.get("/:id", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
@@ -90,5 +88,5 @@ app.get("/:id/search/:word", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`server running at: http://localhost:${port}`);
+  console.log(`Server running on ${port} with ${environment} environment set.`);
 });
