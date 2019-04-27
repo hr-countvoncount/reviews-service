@@ -33,13 +33,9 @@ class ReviewList extends React.Component {
   }
 
   getReviews(id) {
-    console.log("MAyBE THIS IS A PROBLEM ", process.env.DB_DBNANE);
-    console.log("I HAVE ACCESS RIGHT ? ", process.env.AWS_IP);
-    console.log("process.env ", process.env.AWS_IP);
-
     return axios({
       // url: `http://localhost:3002/room${id}`,
-      url: `http://${process.env.AWS_IP}/room${id}`,
+      url: `http://ec2-18-219-187-66.us-east-2.compute.amazonaws.com/room${id}`,
       method: "get",
       params: { limit: 7, offset: this.state.offset }
     })
@@ -70,7 +66,9 @@ class ReviewList extends React.Component {
   getSearchResults(id, word) {
     axios
       // .get(`http://localhost:3002${id}/search/${word}`)
-      .get(`http://${process.env.AWS_IP}${id}/search/${word}`)
+      .get(
+        `http://ec2-18-219-187-66.us-east-2.compute.amazonaws.com${id}/search/${word}`
+      )
       .then(({ data }) => {
         this.setState({
           searchedReviews: data,
