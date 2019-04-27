@@ -35,6 +35,7 @@ class ReviewList extends React.Component {
   getReviews(id) {
     console.log("MAyBE THIS IS A PROBLEM ", process.env.DB_DBNANE);
     console.log("I HAVE ACCESS RIGHT ? ", process.env.AWS_IP);
+    console.log("process.env ", process.env.AWS_IP);
 
     return axios({
       // url: `http://localhost:3002/room${id}`,

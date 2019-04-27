@@ -1,7 +1,6 @@
 const webpack = require("webpack");
 const path = require("path");
 const CompressionPlugin = require("compression-webpack-plugin");
-const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   entry: path.resolve(__dirname, "./client/index.js"),
@@ -32,5 +31,10 @@ module.exports = {
     path: path.join(__dirname, "/public"),
     filename: "app.js"
   },
-  plugins: [new CompressionPlugin(), new Dotenv()]
+  plugins: [
+    new CompressionPlugin(),
+    new webpack.DefinePlugin({
+      AWS_IP: JSON.stringify("18.219.187.66")
+    })
+  ]
 };
