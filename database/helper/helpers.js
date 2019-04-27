@@ -10,7 +10,8 @@ const sequelize = new Sequelize(
   {
     host: `${process.env.DB_HOST}`,
     dialect: `${process.env.DB_DIALECT}`,
-    port: `${process.env.DB_PORT}`
+    port: `${process.env.DB_PORT}`,
+    logging: false
   }
 );
 
@@ -35,6 +36,9 @@ const getReviewsFromDatabase = (id, callback) => {
     )
     .then(([results, metadata]) => {
       callback(null, results);
+    })
+    .catch(err => {
+      console.error(err);
     });
 };
 
@@ -50,6 +54,9 @@ const getSearchResultsFromDatabase = (id, word, callback) => {
     )
     .then(([results, metadata]) => {
       callback(null, results);
+    })
+    .catch(err => {
+      console.err(err);
     });
 };
 

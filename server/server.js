@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const path = require("path");
 const util = require("util");
 const cors = require("cors");
+const helmet = require("helmet");
 const expressStaticGzip = require("express-static-gzip");
 const compression = require("compression");
 const port = process.env.PORT || 3002;
@@ -18,6 +19,7 @@ const {
 const app = express();
 
 app.use(cors());
+app.use(helmet());
 app.use(morgan("dev"));
 app.use(compression());
 // app.use(express.static(path.join(__dirname, "../public")));
