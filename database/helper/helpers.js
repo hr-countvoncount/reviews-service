@@ -3,11 +3,16 @@ const Sequelize = require("sequelize");
 /***************************/
 /****** Sequelize AWS ******/
 /***************************/
-const sequelize = new Sequelize("reviews", "postgres", "pass123", {
-  host: "localhost",
-  dialect: "postgres",
-  port: 5432
-});
+const sequelize = new Sequelize(
+  `${process.env.DB_DBNAME}`,
+  `${process.env.DB_USERNAME}`,
+  `${process.env.DB_PASSWORD}`,
+  {
+    host: `${process.env.DB_HOST}`,
+    dialect: `${process.env.DB_DIALECT}`,
+    port: `${process.env.DB_PORT}`
+  }
+);
 
 /*********************************/
 /****** Sequelize localhost ******/
