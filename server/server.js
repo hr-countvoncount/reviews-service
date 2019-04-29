@@ -49,6 +49,15 @@ sortReviews = dates => {
   });
 };
 
+app.get("/loaderio-4374e6cd558ac3733e0a5166c7a71263", (req, res) => {
+  res.sendFile(
+    path.join(
+      __dirname,
+      "../public/loaderio-4374e6cd558ac3733e0a5166c7a71263.txt"
+    )
+  );
+});
+
 app.get("/:id", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
