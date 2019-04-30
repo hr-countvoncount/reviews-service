@@ -1,12 +1,13 @@
-import Response from './Response.jsx';
+import React from "react";
+import Response from "./Response.jsx";
 
 class Review extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      show: true,
-    }
+      show: true
+    };
 
     this.readMore = this.readMore.bind(this);
     this.renderReviews = this.renderReviews.bind(this);
@@ -17,21 +18,27 @@ class Review extends React.Component {
     let review = document.getElementsByClassName(`read-more${i}`);
     let lessText = review[0].innerText.slice(0, -13);
 
-    return review[0].innerText = lessText + text;
+    return (review[0].innerText = lessText + text);
   }
 
   readMore(index, text) {
     if (text.length > 280) {
       for (let i = 280; i > 0; i--) {
-        if (text[i + 1] === ' ') {
-          var lessText = text.slice(0, i + 1) + '...';
+        if (text[i + 1] === " ") {
+          var lessText = text.slice(0, i + 1) + "...";
           var moreText = text.slice(i + 1, text.length);
           break;
-        } 
+        }
       }
       return (
         <React.Fragment>
-          {lessText} <button className="read-more-button" onClick={() => this.handleClick(index, moreText)}>Read more</button>
+          {lessText}{" "}
+          <button
+            className="read-more-button"
+            onClick={() => this.handleClick(index, moreText)}
+          >
+            Read more
+          </button>
         </React.Fragment>
       );
     } else {
@@ -57,13 +64,12 @@ class Review extends React.Component {
         return searchedReviews[i].date;
       }
       return paginatedReviews[i].date;
-    }
+    };
 
     if (reviews[i].has_response) {
-      return <Response review={owner} response={ownerResponse} date={date()} />
-    }  
+      return <Response review={owner} response={ownerResponse} date={date()} />;
+    }
   }
-
 
   render() {
     return (
@@ -73,10 +79,10 @@ class Review extends React.Component {
             <div key={review.text} className="review-container">
               <div className="header-container">
                 <div>
-                  <img className="avatar" src={`${review.avatar}`}/>
+                  <img className="avatar" src={`${review.avatar}`} />
                 </div>
                 <div className="name">
-                  <div>{review.name}</div> 
+                  <div>{review.name}</div>
                 </div>
                 <div className="date">
                   <div>{review.date}</div>
@@ -90,7 +96,7 @@ class Review extends React.Component {
                   {this.appendResponses(i)}
                 </div>
               </div>
-              <hr className="divider"/>
+              <hr className="divider" />
             </div>
           );
         })}
@@ -98,6 +104,5 @@ class Review extends React.Component {
     );
   }
 }
-
 
 export default Review;

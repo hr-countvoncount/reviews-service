@@ -1,8 +1,10 @@
+import React from "react";
+
 const Response = props => (
   <React.Fragment>
     <div className="response-container">
       <div className="avatar">
-        <img className="response-avatar" src={props.review.avatar}/>
+        <img className="response-avatar" src={props.review.avatar} />
       </div>
       <div className="response-name">
         <div>Response from {props.review.name}:</div>
