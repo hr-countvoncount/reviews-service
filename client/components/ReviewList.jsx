@@ -35,7 +35,7 @@ class ReviewList extends React.Component {
   getReviews(id) {
     return axios({
       // url: `http://localhost:3002/room${id}`,
-      url: `http://ec2-3-19-75-208.us-east-2.compute.amazonaws.com/room${id}`,
+      url: `http://ec2-3-17-64-20.us-east-2.compute.amazonaws.com/room${id}`,
       method: "get",
       params: { limit: 7, offset: this.state.offset }
     })
@@ -67,7 +67,7 @@ class ReviewList extends React.Component {
     axios
       // .get(`http://localhost:3002${id}/search/${word}`)
       .get(
-        `http://ec2-3-19-75-208.us-east-2.compute.amazonaws.com${id}/search/${word}`
+        `http://ec2-3-17-64-20.us-east-2.compute.amazonaws.com${id}/search/${word}`
       )
       .then(({ data }) => {
         this.setState({
