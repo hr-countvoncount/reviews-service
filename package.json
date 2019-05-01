@@ -29,6 +29,7 @@
     "newrelic": "^5.7.0",
     "pg": "^7.10.0",
     "pg-hstore": "^2.3.2",
+    "pg-pool": "^2.0.6",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-paginate": "^6.3.0",

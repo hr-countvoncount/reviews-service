@@ -14,7 +14,7 @@ const environment = process.env.NODE_ENV || "development";
 const {
   getReviewsFromDatabase,
   getSearchResultsFromDatabase
-} = require("../database/helper/pg-helpers.js");
+} = require("../database/helper/helpers.js");
 
 const app = express();
 
@@ -36,6 +36,12 @@ app.use(express.static(path.join(__dirname, "../public")));
 //     orderPreference: ["br"]
 //   })
 // );
+
+app.get("*.js", (req, res, next) => {
+  req.url = req.url + ".gz";
+  res.set("Content-Encoding", "gzip");
+  next();
+});
 
 getPaginatedItems = (items, offset) => {
   return items.slice(offset, offset + 7);

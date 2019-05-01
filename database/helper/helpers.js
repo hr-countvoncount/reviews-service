@@ -3,30 +3,33 @@ const Sequelize = require("sequelize");
 /***************************/
 /****** Sequelize AWS ******/
 /***************************/
-// const sequelize = new Sequelize(
-//   `${process.env.DB_DBNAME}`,
-//   `${process.env.DB_USERNAME}`,
-//   `${process.env.DB_PASSWORD}`,
-//   {
-//     host: `${process.env.DB_HOST}`,
-//     dialect: `${process.env.DB_DIALECT}`,
-//     port: `${process.env.DB_PORT}`,
-//     logging: false,
-//     pool: {
-//       max: 15,
-//       min: 0
-//     }
-//   }
-// );
+const sequelize = new Sequelize(
+  `${process.env.DB_DBNAME}`,
+  `${process.env.DB_USERNAME}`,
+  `${process.env.DB_PASSWORD}`,
+  {
+    host: `${process.env.DB_HOST}`,
+    dialect: `${process.env.DB_DIALECT}`,
+    port: `${process.env.DB_PORT}`,
+    logging: false,
+    pool: {
+      max: 15,
+      min: 0
+    }
+  }
+);
 
 /*********************************/
 /****** Sequelize localhost ******/
 /*********************************/
-const sequelize = new Sequelize("reviews", null, null, {
-  host: "localhost",
-  dialect: "postgres",
-  logging: false
-});
+// const sequelize = new Sequelize("reviews", null, null, {
+//   host: "localhost",
+//   dialect: "postgres",
+//   logging: false,
+//   pool: {
+//     max: 70
+//   }
+// });
 
 /****************************************/
 /****** Sequelize Helper Functions ******/
