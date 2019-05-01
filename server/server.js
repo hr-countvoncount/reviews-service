@@ -57,11 +57,11 @@ sortReviews = dates => {
   });
 };
 
-app.get("/loaderio-edb92f008fa76526ebf639ad86445e73", (req, res) => {
+app.get("/loaderio-05a77ee5b636af8515d8770430ac18c3", (req, res) => {
   res.sendFile(
     path.join(
       __dirname,
-      "../public/loaderio-edb92f008fa76526ebf639ad86445e73.txt"
+      "../public/loaderio-05a77ee5b636af8515d8770430ac18c3.txt"
     )
   );
 });
