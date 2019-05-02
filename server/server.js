@@ -14,7 +14,7 @@ const environment = process.env.NODE_ENV || "development";
 const {
   getReviewsFromDatabase,
   getSearchResultsFromDatabase
-} = require("../database/helper/helpers.js");
+} = require("../database/helper/pg-helpers.js");
 
 const app = express();
 
