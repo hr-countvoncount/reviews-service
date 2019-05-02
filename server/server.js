@@ -14,7 +14,7 @@ const environment = process.env.NODE_ENV || "development";
 const {
   getReviewsFromDatabase,
   getSearchResultsFromDatabase
-} = require("../database/helper/pg-helpers.js");
+} = require("../database/helper/helpers.js");
 
 const app = express();
 
@@ -57,11 +57,11 @@ sortReviews = dates => {
   });
 };
 
-app.get("/loaderio-05a77ee5b636af8515d8770430ac18c3", (req, res) => {
+app.get("/loaderio-b95a93255f61bba840fcd726b43f74bc", (req, res) => {
   res.sendFile(
     path.join(
       __dirname,
-      "../public/loaderio-05a77ee5b636af8515d8770430ac18c3.txt"
+      "../public/loaderio-b95a93255f61bba840fcd726b43f74bc.txt"
     )
   );
 });
