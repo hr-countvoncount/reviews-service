@@ -19,7 +19,6 @@ const {
 const app = express();
 
 app.use(cors());
-app.use(helmet());
 app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "../public")));
 
@@ -57,11 +56,11 @@ sortReviews = dates => {
   });
 };
 
-app.get("/loaderio-b95a93255f61bba840fcd726b43f74bc", (req, res) => {
+app.get("/loaderio-36d9621e3b0c0f81efccb03b9bd513bd", (req, res) => {
   res.sendFile(
     path.join(
       __dirname,
-      "../public/loaderio-b95a93255f61bba840fcd726b43f74bc.txt"
+      "../public/loaderio-36d9621e3b0c0f81efccb03b9bd513bd.txt"
     )
   );
 });
